@@ -17,7 +17,7 @@ const withMDX = createMDX(
 const nextConfig = {
     output: "export",
     pageExtensions: ['js', 'jsx', 'mdx', 'md', 'ts', 'tsx'],
-    distDir: "/_doc"
+    distDir: "/_docs"
 }
 
 // module.exports = withMDX(nextConfig)
