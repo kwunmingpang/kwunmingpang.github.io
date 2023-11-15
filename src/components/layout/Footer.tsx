@@ -6,7 +6,7 @@ const Footer: FC = () => {
             <div className="mx-auto w-full max-w-7xl lg:px-8 py-6 flex">
                 <span></span>
                 <p className="ml-auto text-sm text-zinc-500">
-                    © 2023 KwunMing Pang. All rights reserved.
+                    © 2023 All rights reserved, KwunMing Pang
                 </p>
             </div>
         </div>

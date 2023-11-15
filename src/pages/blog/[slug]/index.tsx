@@ -3,28 +3,45 @@ import path from "path"
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize"
 import { MDXRemote } from 'next-mdx-remote';
+import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
-import '../../../app/globals.css'
 import 'katex/dist/katex.min.css'
 import Head from "next/head";
-import { FC } from "react";
+import { FC, PropsWithChildren, useMemo } from "react";
+import { FrontMatterType } from "@/model";
+import { format, parse } from "date-fns";
+import { BLOG_DATE_DISPLAY_FORMAT, BLOG_DATE_FORMAT, MDX_FILE_NAME } from "@/constant";
+import blogStlye from "@styles/blog.module.css"
+import { TestComponent, styledH1, styledH2, styledH3, styledP } from "@components/mdx"
+import { genericBlogComponents } from "@/constant/blog"
 
-const TestComponent: FC<{ text: string }> = ({ text }) => {
-    return <div>
-        <button className="border px-4 py-1 rounded-md" onClick={() => console.log(text)}>
-            {text}
-        </button>
-    </div>
+const BlogHeader: FC<{ date: string; title: string }> = ({ title, date }) => {
+    const display = useMemo(() => date ? format(parse(date, BLOG_DATE_FORMAT, new Date()), BLOG_DATE_DISPLAY_FORMAT) : null, [date])
+    return <header className="flex flex-col">
+        {
+            date && <time className="order-first flex items-center text-base text-zinc-500" dateTime={date}>
+                <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+                <span className="ml-2">{display}</span>
+            </time>
+        }
+        <div className="my-4">
+            <h5 className="text-4xl font-bold">{title}</h5>
+        </div>
+    </header>
 }
 
+const components = { TestComponent, ...genericBlogComponents }
+
 export default function Test({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
-    return <div className="">
+    const { title, date } = useMemo(() => source?.frontmatter, [source])
+
+    return <div className={`${blogStlye.blog}`}>
         <Head >
-            {/* @ts-ignore */}
-            <title>{source?.frontmatter?.title}</title>
+            <title>{title}</title>
         </Head>
-        <MDXRemote {...source} components={{ TestComponent }} />
+        <BlogHeader title={title} date={date} />
+        <MDXRemote {...source} components={components} />
     </div>
 }
 
@@ -45,7 +62,7 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
         'utf8'
     );
 
-    const mdxSource = await serialize(source, {
+    const mdxSource = await serialize<any, FrontMatterType>(source, {
         parseFrontmatter: true, mdxOptions: {
             remarkPlugins: [remarkMath],
             // @ts-ignore
@@ -69,7 +86,7 @@ export async function getStaticPaths() {
     return {
         paths: [...files.map(file => ({
             params: {
-                slug: file.replace(/(.+)\.mdx$/, "$1")
+                slug: file.replace(MDX_FILE_NAME, "$1")
             }
         }))],
         fallback: false
