@@ -3,12 +3,20 @@ import path from "path"
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize"
 import { MDXRemote } from 'next-mdx-remote';
-import { compile } from "@mdx-js/mdx"
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
 import '../../../app/globals.css'
 import 'katex/dist/katex.min.css'
 import Head from "next/head";
+import { FC } from "react";
+
+const TestComponent: FC<{ text: string }> = ({ text }) => {
+    return <div>
+        <button className="border px-4 py-1 rounded-md" onClick={() => console.log(text)}>
+            {text}
+        </button>
+    </div>
+}
 
 export default function Test({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
     return <div className="p-10">
@@ -16,7 +24,7 @@ export default function Test({ source }: InferGetStaticPropsType<typeof getStati
             {/* @ts-ignore */}
             <title>{source?.frontmatter?.title}</title>
         </Head>
-        <MDXRemote {...source} />
+        <MDXRemote {...source} components={{ TestComponent }} />
     </div>
 }
 
