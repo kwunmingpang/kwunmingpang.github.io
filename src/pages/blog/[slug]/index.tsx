@@ -35,9 +35,9 @@ const components = { TestComponent, ...genericBlogComponents }
 export default function Test({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
     const { title, date, abstract } = useMemo(() => source?.frontmatter, [source])
 
-    return <div className={`${blogStlye.blog} flex flex-col md:w-8/12 mx-auto`}>
+    return <div className={`${blogStlye.blog} flex flex-col md:w-10/12 lg:w-8/12 mx-auto`}>
         <Head >
-            <title>{title}</title>
+            <title>Blog | {title}</title>
         </Head>
         <BlogHeader {...source?.frontmatter} />
         <div className="">

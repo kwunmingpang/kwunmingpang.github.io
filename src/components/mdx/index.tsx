@@ -12,7 +12,24 @@ export const TestComponent: FC<{ text: string }> = ({ text }) => {
         </button>
     </div>
 }
-export const StyledA: FC<PropsWithChildren & { href: string }> = ({ children, href, ...rest }) => <Link href={href ?? ""} className="text-blue-300/75 hover:text-blue-300 font-semi-bold" {...rest}>
+export const StyledA: FC<PropsWithChildren & { href: string; target?: string }> = ({ children, href, ...rest }) => <Link href={href ?? ""} className="text-blue-300/75 hover:text-blue-300 font-semi-bold" {...rest}>
     {children}
 </Link>
 export const StyledStrong: FC<PropsWithChildren> = ({ children, ...rest }) => <strong className="text-blue-300/75 font-bold" {...rest}>{children}</strong>
+export const PDFReader: FC<{ file: string }> = ({ file }) => {
+    return <div className="w-full my-2">
+        <iframe src={file}
+            className="w-full sm:h-96 h-64"
+            loading="lazy"
+        ></iframe>
+    </div>
+}
+export const VideoPlayer: FC<{ file: string; classname?: string }> = ({ file, classname }) => {
+    return <div className="w-full my-2">
+        <video controls
+            controlsList="nodownload"
+            className={classname ?? "w-96 h-42"}>
+            <source type="video/mp4" src={file} />
+        </video>
+    </div>
+}
