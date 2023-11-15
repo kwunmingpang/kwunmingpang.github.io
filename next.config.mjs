@@ -2,7 +2,7 @@
 const nextConfig = {
     output: "export",
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-    distDir: "/docs"
+    distDir: process.env.DIST_DIR
 }
 
 export default nextConfig

@@ -19,7 +19,7 @@ const TestComponent: FC<{ text: string }> = ({ text }) => {
 }
 
 export default function Test({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
-    return <div className="p-10">
+    return <div className="">
         <Head >
             {/* @ts-ignore */}
             <title>{source?.frontmatter?.title}</title>

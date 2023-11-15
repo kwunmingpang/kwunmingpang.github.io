@@ -3,6 +3,9 @@ import { FC, ReactNode } from "react";
 import type { Metadata } from 'next'
 import '../styles/globals.css'
 import { AppProps } from "next/app"
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import MainLayout from "@/components/layout/MainLayout";
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -10,7 +13,11 @@ export const metadata: Metadata = {
 }
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <div>
-    <Component {...pageProps} />
-  </div>
+  return <MainLayout>
+      <Header></Header>
+      <main className="flex-auto p-8 text-slate-200">
+        <Component {...pageProps} />
+      </main>
+      <Footer></Footer>
+  </MainLayout>
 }
