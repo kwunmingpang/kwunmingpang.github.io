@@ -16,13 +16,12 @@ import blogStlye from "@styles/blog.module.css"
 import { TestComponent, styledH1, styledH2, styledH3, styledP } from "@components/mdx"
 import { genericBlogComponents } from "@/constant/blog"
 
-const BlogHeader: FC<{ date: string; title: string }> = ({ title, date }) => {
+const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {
     const display = useMemo(() => date ? format(parse(date, BLOG_DATE_FORMAT, new Date()), BLOG_DATE_DISPLAY_FORMAT) : null, [date])
     return <header className="flex flex-col">
         {
-            date && <time className="order-first flex items-center text-base text-zinc-500" dateTime={date}>
-                <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
-                <span className="ml-2">{display}</span>
+            date && <time className="order-first flex items-center text-base text-zinc-400/90" dateTime={date}>
+                <span className="">{display}</span>
             </time>
         }
         <div className="my-4">
@@ -34,22 +33,22 @@ const BlogHeader: FC<{ date: string; title: string }> = ({ title, date }) => {
 const components = { TestComponent, ...genericBlogComponents }
 
 export default function Test({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const { title, date } = useMemo(() => source?.frontmatter, [source])
+    const { title, date, abstract } = useMemo(() => source?.frontmatter, [source])
 
-    return <div className={`${blogStlye.blog}`}>
+    return <div className={`${blogStlye.blog} flex flex-col md:w-8/12 mx-auto`}>
         <Head >
             <title>{title}</title>
         </Head>
-        <BlogHeader title={title} date={date} />
-        <MDXRemote {...source} components={components} />
+        <BlogHeader {...source?.frontmatter} />
+        <div className="">
+            <MDXRemote {...source} components={components} />
+        </div>
     </div>
 }
 
 export async function getStaticProps(ctx: GetStaticPropsContext) {
     // @ts-ignore
     const { slug } = ctx.params;
-
-    console.log("slug ", slug)
 
     const currentPath = path.join('./contents', (slug + '.mdx') as string)
 
@@ -69,8 +68,6 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
             rehypePlugins: [rehypeKatex],
         }
     });
-
-    console.log("mdxSource", mdxSource)
 
     return {
         props: {

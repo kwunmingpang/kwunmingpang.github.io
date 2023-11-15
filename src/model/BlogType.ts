@@ -20,4 +20,5 @@ export type FrontMatterType = {
     title: string;
     date: string;
     category?: string;
+    abstract?: string;
 }

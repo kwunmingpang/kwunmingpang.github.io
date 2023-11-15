@@ -20,17 +20,20 @@ const DisplayBlogItem: FC<{ item: MetaDataType[] }> = ({ item }) => {
     return <ul>
         {
             item.map((blog, _index) => {
+                const { title, date, abstract } = blog
                 return <>
-                    <li key={`${blog.title}_${blog.date}`} className="w-8/12 my-4 rounded-lg hover:bg-zinc-500/25 p-2">
+                    <li key={`${blog.title}_${blog.date}`} className="my-4 rounded-lg hover:bg-zinc-500/25 p-2">
                         <Link href={`/blog/${blog.link ?? ""}`} className="flex w-full">
                             <div className="flex gap-1 flex-col">
                                 <time className="text-base text-zinc-400">
-                                    {format(parse(blog.date, BLOG_DATE_FORMAT, new Date()), BLOG_DATE_DISPLAY_FORMAT)}
+                                    {format(parse(date, BLOG_DATE_FORMAT, new Date()), BLOG_DATE_DISPLAY_FORMAT)}
                                 </time>
                                 <h6 className="text-xl font-medium">
-                                    {blog.title}
+                                    {title}
                                 </h6>
-                                <p></p>
+                                {abstract && <p className="font-thin text-zinc-400/80">
+                                    {abstract}
+                                </p>}
                             </div>
                         </Link>
                     </li>
@@ -42,7 +45,7 @@ const DisplayBlogItem: FC<{ item: MetaDataType[] }> = ({ item }) => {
 }
 
 const DisplayBlogGroup: FC<BlogType> = ({ blogGroups }) => {
-    return <div>
+    return <div className=" lg:w-8/12 mx-auto">
         {
             blogGroups?.map((group, index) => {
                 console.log("group", group)
