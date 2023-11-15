@@ -1,3 +1,3 @@
-import { styledH1, styledH2, styledH3, styledP } from "@/components/mdx";
+import { StyledA, StyledH1, StyledH2, StyledH3, StyledP, StyledStrong } from "@/components/mdx";
 
-export const genericBlogComponents = { p: styledP, h1: styledH1, h2: styledH2, h3: styledH3 }
+export const genericBlogComponents = { p: StyledP, h1: StyledH1, h2: StyledH2, h3: StyledH3, a: StyledA, strong: StyledStrong }

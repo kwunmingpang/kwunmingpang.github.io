@@ -13,7 +13,7 @@ import { FrontMatterType } from "@/model";
 import { format, parse } from "date-fns";
 import { BLOG_DATE_DISPLAY_FORMAT, BLOG_DATE_FORMAT, MDX_FILE_NAME } from "@/constant";
 import blogStlye from "@styles/blog.module.css"
-import { TestComponent, styledH1, styledH2, styledH3, styledP } from "@components/mdx"
+import { TestComponent, StyledH1, StyledH2, StyledH3, StyledP } from "@components/mdx"
 import { genericBlogComponents } from "@/constant/blog"
 
 const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {
@@ -41,6 +41,7 @@ export default function Test({ source }: InferGetStaticPropsType<typeof getStati
         </Head>
         <BlogHeader {...source?.frontmatter} />
         <div className="">
+            {/* @ts-ignore */}
             <MDXRemote {...source} components={components} />
         </div>
     </div>

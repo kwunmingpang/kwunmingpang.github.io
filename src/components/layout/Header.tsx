@@ -21,7 +21,7 @@ const menu: MenuItemProps[] = [
     },
     {
         text: "about",
-        link: "/"
+        link: "/about"
     },
     {
         text: "blog",
