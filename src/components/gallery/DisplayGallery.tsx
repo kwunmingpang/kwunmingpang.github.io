@@ -1,17 +1,8 @@
 import Image from "next/image"
-import { forwardRef, useCallback, useState } from "react"
+import { useCallback, useState } from "react"
 import Modal from '@mui/material/Modal';
 import DisplayGalleryItem from "./DisplayGalleryItem";
 import Fade from '@mui/material/Fade';
-import { StyledH3 } from "../mdx";
-
-const galleryList = [
-    "/assets/gallery/DSC01676.jpg",
-    "/assets/gallery/DSC01677.jpg",
-    "/assets/gallery/DSC01683.jpg",
-    "/assets/gallery/DSC01709.jpg",
-    "/assets/gallery/mmexport1692537938226.jpg"
-]
 
 // add image meta data (yaml) later to give tags etc. to images
 const DisplayGallery = ({ pictures = [] }: { pictures: string[] }) => {
@@ -27,7 +18,7 @@ const DisplayGallery = ({ pictures = [] }: { pictures: string[] }) => {
         setImage(source)
     }, [image])
 
-    return <div className="grid gap-2 grid-col-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+    return <div className="grid gap-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 lg:gap-3">
         {[...pictures].map((pic, index) => {
             return <DisplayGalleryItem pictureSource={pic} key={`${pic}_${index}`} handleOpen={handleOpen} setModalImage={setModalImage} />
         })}
