@@ -15,8 +15,11 @@ const DisplayImage: FC<{ pic: string; }> = ({ pic }) => {
 
     return <div className={`${style.emblaSlide} grow-0 shrink-0 cursor-pointer`} onClick={imgOnClick}>
         <Image
-            className="h-64 w-64 object-cover rounded-lg ring-1 ring-zinc-400/5 rounded-lg opacity-80 hover:opacity-100 transition duration-300"
+            className="h-64 w-64 object-cover rounded-lg ring-1 ring-zinc-400/5 rounded-lg"
             src={pic} width={480} height={480} alt="pictures in gallery" />
+        {/* <Image
+            className="h-64 w-64 object-cover rounded-lg ring-1 ring-zinc-400/5 rounded-lg opacity-80 hover:opacity-100 transition duration-300"
+            src={pic} width={480} height={480} alt="pictures in gallery" /> */}
     </div>
 }
 
