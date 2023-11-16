@@ -12,9 +12,10 @@ export const TestComponent: FC<{ text: string }> = ({ text }) => {
         </button>
     </div>
 }
-export const StyledA: FC<PropsWithChildren & { href: string; target?: string }> = ({ children, href, ...rest }) => <Link href={href ?? ""} className="text-blue-300/75 hover:text-blue-300 font-semi-bold" {...rest}>
-    {children}
-</Link>
+export const StyledA: FC<PropsWithChildren & { href: string; target?: string }> = ({ children, href, ...rest }) =>
+    <Link href={href ?? ""} className="text-blue-300/75 hover:text-blue-300 font-semi-bold" prefetch={false} {...rest}>
+        {children}
+    </Link>
 export const StyledStrong: FC<PropsWithChildren> = ({ children, ...rest }) => <strong className="text-blue-300/75 font-bold" {...rest}>{children}</strong>
 export const PDFReader: FC<{ file: string }> = ({ file }) => {
     return <div className="w-full my-2">

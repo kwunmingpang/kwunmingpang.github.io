@@ -1,10 +1,24 @@
 import Image from "next/image"
 import Link from "next/link"
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import useEmblaCarousel from 'embla-carousel-react'
 import style from "@styles/home.module.css"
+import { useRouter } from "next/router"
 
 const OPTIONS = { dragFree: true, containScroll: 'trimSnaps' }
+
+const DisplayImage: FC<{ pic: string; }> = ({ pic }) => {
+    const router = useRouter()
+    const imgOnClick = useCallback(() => {
+        router.push("/gallery")
+    }, [router])
+
+    return <div className={`${style.emblaSlide} grow-0 shrink-0 cursor-pointer`} onClick={imgOnClick}>
+        <Image
+            className="h-64 w-64 object-cover rounded-lg ring-1 ring-zinc-400/5 rounded-lg opacity-80 hover:opacity-100 transition duration-300"
+            src={pic} width={480} height={480} alt="pictures in gallery" />
+    </div>
+}
 
 const HomePageGallery: FC<{ pictures: string[] }> = ({ pictures }) => {
     const [emblaRef] = useEmblaCarousel(OPTIONS as any)
@@ -13,12 +27,7 @@ const HomePageGallery: FC<{ pictures: string[] }> = ({ pictures }) => {
         <div className={`${style.emblaContainer} flex gap-2`}>
             {
                 pictures?.map((pic, index) => {
-                    return <Link href={"/gallery"} key={`${pic}_${index}`} 
-                        className={`${style.emblaSlide} grow-0 shrink-0`} prefetch={false}>
-                        <Image
-                            className="h-64 w-64 object-cover rounded-lg ring-1 ring-zinc-400/5 rounded-lg opacity-80 hover:opacity-100 transition duration-300"
-                            src={pic} width={480} height={480} alt="pictures in gallery"/>
-                    </Link>
+                    return <DisplayImage pic={pic} key={`${pic}_${index}`} />
                 })
             }
         </div>
