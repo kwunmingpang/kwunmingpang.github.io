@@ -7,6 +7,7 @@ import { genericBlogComponents } from "@/constant/blog";
 import Head from "next/head";
 import { PDFReader, VideoPlayer } from "@/components/mdx";
 import FollowMe from "@/components/FollowMe";
+import Image from "next/image";
 
 export default function About({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
@@ -17,7 +18,10 @@ export default function About({ source }: InferGetStaticPropsType<typeof getStat
             <div className="w-full flex h-full md:p-4 flex-col md:flex-row">
                 <div className="lg:w-8/12 p-4 mx-auto">
                     {/* @ts-ignore */}
-                    <MDXRemote {...source} components={{ ...genericBlogComponents, PDFReader, VideoPlayer, FollowMe }} />
+                    <MDXRemote {...source} components={{
+                        ...genericBlogComponents, PDFReader,
+                        VideoPlayer, FollowMe, NextImage: Image
+                    }} />
                 </div>
             </div>
         </>

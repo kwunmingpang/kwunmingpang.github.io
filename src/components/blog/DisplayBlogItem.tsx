@@ -26,7 +26,7 @@ const DisplayBlogItem: FC<{ item: MetaDataType[]; readmore?: boolean }> = ({ ite
                             {abstract && readmore && <div>
                                 <button className="py-1 px-3 rounded-lg hover:text-slate-200 text-zinc-400/80
                                     hover:ring-zinc-200/5 hover:bg-blue-200/30 hover:ring-1">
-                                    Read More
+                                    Read More &gt;
                                 </button>
                             </div>}
                         </div>
