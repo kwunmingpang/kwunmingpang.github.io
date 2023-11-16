@@ -13,8 +13,9 @@ import _ from "lodash";
 import DisplayBlogItem from "@/components/blog/DisplayBlogItem";
 import ViewMore from "@/components/ViewMore";
 import Image from "next/image";
+import HomePageGallery from "@/components/gallery/HomePageGallery";
 
-export default function Home({ source, displayBlogs }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({ source, displayBlogs, displayGallery }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
             <Head>
@@ -37,17 +38,7 @@ export default function Home({ source, displayBlogs }: InferGetStaticPropsType<t
             </div>
             <div className="w-full flex p-4 md:p-10 flex-col mt-4 lg:w-10/12 xl:w-8/12">
                 <StyledH2>Gallery: </StyledH2>
-                <div className="flex gap-6 w-screen -ml-32 overflow-hidden">
-                    <Image className="h-64 w-64 object-cover rounded-lg ring-1 ring-zinc-400/5 rounded-lg opacity-80 hover:opacity-100 transition duration-300"
-                        src={"/assets/gallery/DSC01676.jpg"} width={480} height={480} alt="pictures in gallery"
-                        quality={25} priority={false} loading='lazy' />
-                    <Image className="h-64 w-64 object-cover rounded-lg ring-1 ring-zinc-400/5 rounded-lg opacity-80 hover:opacity-100 transition duration-300"
-                        src={"/assets/gallery/DSC01676.jpg"} width={480} height={480} alt="pictures in gallery"
-                        quality={25} priority={false} loading='lazy' />
-                    <Image className="h-64 w-64 object-cover rounded-lg ring-1 ring-zinc-400/5 rounded-lg opacity-80 hover:opacity-100 transition duration-300"
-                        src={"/assets/gallery/DSC01676.jpg"} width={480} height={480} alt="pictures in gallery"
-                        quality={25} priority={false} loading='lazy' />
-                </div>
+                <HomePageGallery pictures={displayGallery} />
                 <div className="mt-4"><ViewMore link="/gallery" topic="" /></div>
             </div>
             <div className="w-full flex p-4 md:p-10 flex-col mt-4 lg:w-10/12 xl:w-8/12">
@@ -81,10 +72,13 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
     console.log(blogMetas)
     console.log(displayBlogs)
 
+    const displayGallery = mdxSource.frontmatter.gallery.map(item => `/assets/gallery/${item}`)
+
     return {
         props: {
             source: mdxSource,
-            displayBlogs
+            displayBlogs,
+            displayGallery
         },
     };
 }

@@ -3,6 +3,7 @@ import { forwardRef, useCallback, useState } from "react"
 import Modal from '@mui/material/Modal';
 import DisplayGalleryItem from "./DisplayGalleryItem";
 import Fade from '@mui/material/Fade';
+import { StyledH3 } from "../mdx";
 
 const galleryList = [
     "/assets/gallery/DSC01676.jpg",
@@ -13,7 +14,7 @@ const galleryList = [
 ]
 
 // add image meta data (yaml) later to give tags etc. to images
-const DisplayGallery = () => {
+const DisplayGallery = ({ pictures = [] }: { pictures: string[] }) => {
     const [open, setOpen] = useState(false)
     const [image, setImage] = useState("")
     const handleClose = useCallback(() => {
@@ -30,7 +31,7 @@ const DisplayGallery = () => {
         {/* <div>
             <Image src={"/assets/gallery/DSC01676.jpg"} width={720} height={480} alt="pictures in gallery" />
         </div> */}
-        {[...galleryList, ...galleryList, ...galleryList].map((pic, index) => {
+        {[...pictures].map((pic, index) => {
             return <DisplayGalleryItem pictureSource={pic} key={`${pic}_${index}`} handleOpen={handleOpen} setModalImage={setModalImage} />
         })}
         <Modal

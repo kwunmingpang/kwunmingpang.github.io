@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { FC, PropsWithChildren } from "react";
+import { usePathname } from "next/navigation";
+import { FC, PropsWithChildren, useMemo } from "react";
 
 type MenuItemProps = {
     link: string
@@ -7,9 +8,13 @@ type MenuItemProps = {
 } & PropsWithChildren
 
 const MenuItem: FC<MenuItemProps> = ({ text, link }) => {
+    const pathname = usePathname()
+    const active = useMemo(() => pathname === link, [pathname])
     return <Link href={link}>
-        <li className="px-3.5 py-2.5 capitalize font-medium text-sm">
+        <li className={`px-3.5 py-2.5 capitalize font-medium text-sm relative hover:text-blue-300 ${active ? "text-blue-300/80" : ""}`}>
             {text}
+            {active && <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-blue-300/20 
+                via-blue-300/60 from-blue-300/20"></span>}
         </li>
     </Link>
 }

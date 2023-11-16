@@ -1,9 +1,27 @@
 import DisplayGallery from "@/components/gallery/DisplayGallery"
+import { StyledH1 } from "@/components/mdx"
+import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
+import fs from "fs"
 
-const Gallery = () => {
-    return <div>
-        <DisplayGallery />
+const GALLERY = "/assets/gallery"
+const GALLERY_PATH = `./public${GALLERY}`
+
+const Gallery = ({ pictures }: InferGetStaticPropsType<typeof getStaticProps>) => {
+    return <div className="py-12">
+        <StyledH1>Gallery</StyledH1>
+        <DisplayGallery pictures={pictures} />
     </div>
 }
 
 export default Gallery
+
+export async function getStaticProps(ctx: GetStaticPropsContext) {
+    const pictures = fs.readdirSync(GALLERY_PATH)
+    console.log(pictures)
+
+    return {
+        props: {
+            pictures: pictures.map(pic => `${GALLERY}/${pic}`)
+        },
+    };
+}
