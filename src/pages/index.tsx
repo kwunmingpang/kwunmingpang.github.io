@@ -5,19 +5,22 @@ import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import { genericBlogComponents } from "@/constant/blog";
 import Head from "next/head";
-import { StyledA } from "@/components/mdx";
+import { StyledA, StyledH2 } from "@/components/mdx";
 import FollowMe from "@/components/FollowMe";
 import { getBlogMetaDatas } from "@/service/fileService";
 import { firstValueFrom } from "rxjs";
+import _ from "lodash";
+import DisplayBlogItem from "@/components/blog/DisplayBlogItem";
+import ViewMore from "@/components/ViewMore";
 
-export default function Home({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({ source, displayBlogs }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
             <Head>
                 <title>Peter Pang</title>
             </Head>
-            <div className="w-full flex p-4 md:p-8 flex-col md:flex-row">
-                <div className="md:w-8/12 md:p-4 flex flex-col">
+            <div className="w-full flex p-4 md:p-8 flex-col md:flex-row ">
+                <div className="lg:w-8/12 md:w-10/12 md:p-4 flex flex-col">
                     <span className="my-auto"></span>
                     <div>
                         {/* @ts-ignore */}
@@ -25,17 +28,18 @@ export default function Home({ source }: InferGetStaticPropsType<typeof getStati
                     </div>
                     <span className="my-auto"></span>
                 </div>
-                <div className="md:w-4/12 md:p-4 flex flex-col">
+                <div className="lg:w-4/12 md:w-2/12 md:p-4 flex flex-col">
                     <span className="my-auto"></span>
                     <FollowMe />
                     <span className="my-auto"></span>
                 </div>
             </div>
-            <div className="w-full flex p-4 md:p-10 flex-col">
-                <h5>article selection</h5>
-                <p>aaa</p>
+            <div className="w-full flex p-4 md:p-10 flex-col mt-4 lg:w-10/12 xl:w-8/12">
+                <StyledH2>Blogs:  </StyledH2>
+                <DisplayBlogItem item={displayBlogs} readmore />
+                <ViewMore link="/blog" topic="blogs" />
             </div>
-            <div className="w-full flex p-4 md:p-10 flex-col">
+            <div className="w-full flex p-4 md:p-10 flex-col mt-4">
                 <h5>gallery selection</h5>
                 <p>aaa</p>
             </div>
@@ -55,17 +59,20 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
         'utf8'
     );
 
-    const mdxSource = await serialize(source, { parseFrontmatter: true });
+    const mdxSource = await serialize<any, { blog: string[]; gallery: string[] }>(source, { parseFrontmatter: true });
 
     console.log(mdxSource.frontmatter)
-    
+
     const blogMetas = await firstValueFrom(getBlogMetaDatas())
+    const displayBlogs = blogMetas.filter(blog => _(mdxSource.frontmatter.blog).includes(blog.link))
 
     console.log(blogMetas)
+    console.log(displayBlogs)
 
     return {
         props: {
             source: mdxSource,
+            displayBlogs
         },
     };
 }
