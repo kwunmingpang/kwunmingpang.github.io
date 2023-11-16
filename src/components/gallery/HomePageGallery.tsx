@@ -13,11 +13,11 @@ const HomePageGallery: FC<{ pictures: string[] }> = ({ pictures }) => {
         <div className={`${style.emblaContainer} flex gap-2`}>
             {
                 pictures?.map((pic, index) => {
-                    return <Link href={"/gallery"} key={`${pic}_${index}`} className={`${style.emblaSlide} grow-0 shrink-0`}>
+                    return <Link href={"/gallery"} key={`${pic}_${index}`} 
+                        className={`${style.emblaSlide} grow-0 shrink-0`} prefetch={false}>
                         <Image
                             className="h-64 w-64 object-cover rounded-lg ring-1 ring-zinc-400/5 rounded-lg opacity-80 hover:opacity-100 transition duration-300"
-                            src={pic} width={480} height={480} alt="pictures in gallery"
-                            quality={25} priority={false} loading='lazy' />
+                            src={pic} width={480} height={480} alt="pictures in gallery"/>
                     </Link>
                 })
             }

@@ -28,9 +28,6 @@ const DisplayGallery = ({ pictures = [] }: { pictures: string[] }) => {
     }, [image])
 
     return <div className="grid gap-2 grid-col-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
-        {/* <div>
-            <Image src={"/assets/gallery/DSC01676.jpg"} width={720} height={480} alt="pictures in gallery" />
-        </div> */}
         {[...pictures].map((pic, index) => {
             return <DisplayGalleryItem pictureSource={pic} key={`${pic}_${index}`} handleOpen={handleOpen} setModalImage={setModalImage} />
         })}
