@@ -1,5 +1,9 @@
+import DisplayGallery from "@/components/gallery/DisplayGallery"
+
 const Gallery = () => {
-    return <div>TODO</div>
+    return <div>
+        <DisplayGallery />
+    </div>
 }
 
 export default Gallery
