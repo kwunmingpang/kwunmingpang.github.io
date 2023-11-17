@@ -63,7 +63,7 @@ const HomePageGallery: FC<{ pictures: string[] }> = ({ pictures }) => {
 
     return (
         <>
-            <div
+            {/* <div
                 className={`${style.emblaContainer} overflow-x-scroll flex gap-2 lg:hidden`}
             >
                 {pictures?.map((pic, index) => {
@@ -71,9 +71,10 @@ const HomePageGallery: FC<{ pictures: string[] }> = ({ pictures }) => {
                         <DisplayImageMobile pic={pic} key={`${pic}_${index}`} />
                     );
                 })}
-            </div>
+            </div> */}
             <div ref={emblaRef}>
-                <div className={`${style.emblaContainer} gap-2 hidden lg:flex`}>
+                {/* <div className={`${style.emblaContainer} gap-2 hidden lg:flex`}> */}
+                <div className={`${style.emblaContainer} gap-2 flex`}>
                     {pictures?.map((pic, index) => {
                         return (
                             <DisplayImage pic={pic} key={`${pic}_${index}`} />
