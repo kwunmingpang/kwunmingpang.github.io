@@ -13,7 +13,6 @@ import { genericBlogComponents } from "@/constant/blog";
 import { PDFReader, StyledA, StyledP, VideoPlayer } from "@/components/mdx";
 import Image from "next/image";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Typography from "@mui/material/Typography";
 
 const BreadCrumbsProvider: FC<PropsWithChildren & { title: string }> = ({
     title,
