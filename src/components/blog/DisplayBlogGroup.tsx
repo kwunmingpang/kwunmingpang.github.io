@@ -11,7 +11,6 @@ const DisplayBlogGroup: FC<BlogType> = ({ blogGroups }) => {
     return <div className=" lg:w-8/12 mx-auto">
         {
             blogGroups?.map((group, index) => {
-                console.log("group", group)
                 const { key, item } = group
                 return <Fragment key={group.key}>
                     <DisplayBlogCategory groupKey={key} index={index} />

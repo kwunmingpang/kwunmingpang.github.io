@@ -1,6 +1,6 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import path from "path";
-import fs from "fs"
+import fs from "fs";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import { genericBlogComponents } from "@/constant/blog";
@@ -14,7 +14,11 @@ import DisplayBlogItem from "@/components/blog/DisplayBlogItem";
 import ViewMore from "@/components/ViewMore";
 import HomePageGallery from "@/components/gallery/HomePageGallery";
 
-export default function Home({ source, displayBlogs, displayGallery }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({
+    source,
+    displayBlogs,
+    displayGallery,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
             <Head>
@@ -24,8 +28,11 @@ export default function Home({ source, displayBlogs, displayGallery }: InferGetS
                 <div className="lg:w-8/12 md:w-10/12 md:p-4 flex flex-col">
                     <span className="my-auto"></span>
                     <div>
-                        {/* @ts-ignore */}
-                        <MDXRemote {...source} components={genericBlogComponents} />
+                        <MDXRemote
+                            {...source}
+                            // @ts-ignore
+                            components={genericBlogComponents}
+                        />
                     </div>
                     <span className="my-auto"></span>
                 </div>
@@ -38,50 +45,55 @@ export default function Home({ source, displayBlogs, displayGallery }: InferGetS
             <div className="w-full flex p-4 md:p-10 flex-col mt-4 lg:w-10/12 xl:w-8/12">
                 <StyledH2>Gallery: </StyledH2>
                 <HomePageGallery pictures={displayGallery} />
-                <div className="mt-4"><ViewMore link="/gallery" topic="" /></div>
+                <div className="mt-4">
+                    <ViewMore link="/gallery" topic="" />
+                </div>
             </div>
             <div className="w-full flex p-4 md:p-10 flex-col mt-4 lg:w-10/12 xl:w-8/12">
-                <StyledH2>Blogs:  </StyledH2>
+                <StyledH2>Blogs: </StyledH2>
                 <DisplayBlogItem item={displayBlogs} readmore />
                 <ViewMore link="/blog" topic="blogs" />
             </div>
         </>
-    )
+    );
 }
 
 export async function getStaticProps(ctx: GetStaticPropsContext) {
-    const currentPath = path.join('./static-contents', ("Home.mdx") as string)
+    const currentPath = path.join("./static-contents", "Home.mdx" as string);
 
-    if (!fs.existsSync(currentPath)) return {
-        notFound: true
-    }
+    if (!fs.existsSync(currentPath))
+        return {
+            notFound: true,
+        };
 
-    const source = fs.readFileSync(
-        currentPath,
-        'utf8'
+    const source = fs.readFileSync(currentPath, "utf8");
+
+    const mdxSource = await serialize<
+        any,
+        { blog: string[]; gallery: string[] }
+    >(source, { parseFrontmatter: true });
+
+    console.log(mdxSource.frontmatter);
+
+    const blogMetas = await firstValueFrom(getBlogMetaDatas());
+    const displayBlogs = blogMetas.filter((blog) =>
+        _(mdxSource.frontmatter.blog).includes(blog.link)
     );
 
-    const mdxSource = await serialize<any, { blog: string[]; gallery: string[] }>(source, { parseFrontmatter: true });
-
-    console.log(mdxSource.frontmatter)
-
-    const blogMetas = await firstValueFrom(getBlogMetaDatas())
-    const displayBlogs = blogMetas.filter(blog => _(mdxSource.frontmatter.blog).includes(blog.link))
-
-    console.log(blogMetas)
-    console.log(displayBlogs)
+    console.log(blogMetas);
+    console.log(displayBlogs);
 
     // const displayGallery = mdxSource.frontmatter.gallery.map(item => `/assets/gallery/${item}`)
 
-    const homeGallery = fs.readdirSync("./public/assets/home")
+    const homeGallery = fs.readdirSync("./public/assets/home");
 
-    const displayGallery = homeGallery.map(item => `/assets/home/${item}`)
+    const displayGallery = homeGallery.map((item) => `/assets/home/${item}`);
 
     return {
         props: {
             source: mdxSource,
             displayBlogs,
-            displayGallery
+            displayGallery,
         },
     };
 }
