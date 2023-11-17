@@ -72,7 +72,7 @@ const HomePageGallery: FC<{ pictures: string[] }> = ({ pictures }) => {
                     );
                 })}
             </div> */}
-            <div ref={emblaRef}>
+            <div ref={emblaRef} className="overflow-x-hidden">
                 {/* <div className={`${style.emblaContainer} gap-2 hidden lg:flex`}> */}
                 <div className={`${style.emblaContainer} gap-2 flex`}>
                     {pictures?.map((pic, index) => {

@@ -42,9 +42,12 @@ export default function Home({
                     <span className="my-auto"></span>
                 </div>
             </div>
-            <div className="w-full flex p-4 md:p-10 flex-col mt-4 lg:w-10/12 xl:w-8/12">
+            {/* <div className="w-full flex p-4 md:p-10 flex-col mt-4 lg:w-10/12 xl:w-8/12"> */}
+            <div className="flex flex-col mt-4 p-4 md:p-10">
                 <StyledH2>Gallery: </StyledH2>
-                <HomePageGallery pictures={displayGallery} />
+                <div className="md:-ml-16 md:-mr-[4.5rem] -mr-12 -ml-4">
+                    <HomePageGallery pictures={displayGallery} />
+                </div>
                 <div className="mt-4">
                     <ViewMore link="/gallery" topic="" />
                 </div>

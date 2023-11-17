@@ -4,6 +4,7 @@ import { AppProps } from "next/app";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MainLayout from "@/components/layout/MainLayout";
+import Head from "next/head";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -13,6 +14,12 @@ export const metadata: Metadata = {
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <MainLayout>
+            {/* <Head>
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+                />
+            </Head> */}
             <Header></Header>
             <main className="flex-auto p-8 text-slate-200">
                 <Component {...pageProps} />
