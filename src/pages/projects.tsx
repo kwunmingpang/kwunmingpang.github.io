@@ -39,7 +39,7 @@ const DateDisplay: FC<{ date: string }> = ({ date }) => (
 const Header: FC<{ date: string; title: string }> = ({ date, title }) => {
     return (
         <>
-            <h3 className="text-2xl font-bold">{title}</h3>
+            <h3 className="text-2xl font-bold pt-1">{title}</h3>
             <DateDisplay date={date} />
             <span className="mb-4 inset-x-1-bottom-px h-px p-1"></span>
         </>
