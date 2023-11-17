@@ -6,6 +6,8 @@ const DisplayGalleryItem: FC<{ pictureSource: string; handleOpen: any; setModalI
         setModalImage(pictureSource)
         handleOpen()
     }
+    // onload add ring
+
     return <div className="relative cursor-pointer" style={{ minHeight: 150 }} onClick={itemOnClick}>
         <Image className="h-full w-auto object-cover rounded-lg ring-1 ring-zinc-400/20"
             src={pictureSource} width={720} height={480}
