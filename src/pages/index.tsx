@@ -5,14 +5,13 @@ import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import { genericBlogComponents } from "@/constant/blog";
 import Head from "next/head";
-import { StyledA, StyledH2 } from "@/components/mdx";
+import { StyledH2 } from "@/components/mdx";
 import FollowMe from "@/components/FollowMe";
 import { getBlogMetaDatas } from "@/service/fileService";
 import { firstValueFrom } from "rxjs";
 import _ from "lodash";
 import DisplayBlogItem from "@/components/blog/DisplayBlogItem";
 import ViewMore from "@/components/ViewMore";
-import Image from "next/image";
 import HomePageGallery from "@/components/gallery/HomePageGallery";
 
 export default function Home({ source, displayBlogs, displayGallery }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -72,7 +71,11 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
     console.log(blogMetas)
     console.log(displayBlogs)
 
-    const displayGallery = mdxSource.frontmatter.gallery.map(item => `/assets/gallery/${item}`)
+    // const displayGallery = mdxSource.frontmatter.gallery.map(item => `/assets/gallery/${item}`)
+
+    const homeGallery = fs.readdirSync("./public/assets/home")
+
+    const displayGallery = homeGallery.map(item => `/assets/home/${item}`)
 
     return {
         props: {
