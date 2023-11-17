@@ -7,15 +7,31 @@ import "katex/dist/katex.min.css";
 import Head from "next/head";
 import { FC, PropsWithChildren, useMemo } from "react";
 import { FrontMatterType } from "@/model";
-import {
-    MDX_FILE_NAME,
-} from "@/constant";
+import { MDX_FILE_NAME } from "@/constant";
 import blogStlye from "@styles/blog.module.css";
 import { genericBlogComponents } from "@/constant/blog";
-import { PDFReader, VideoPlayer } from "@/components/mdx";
+import { PDFReader, StyledA, StyledP, VideoPlayer } from "@/components/mdx";
 import Image from "next/image";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Typography from "@mui/material/Typography";
 
-const components = { ...genericBlogComponents, NextImage: Image, VideoPlayer };
+const BreadCrumbsProvider: FC<PropsWithChildren & { title: string }> = ({
+    title,
+}) => {
+    return (
+        <Breadcrumbs aria-label="breadcrumb" separator={<span className="text-slate-300/75">›</span>}>
+            <StyledA href="/about">about</StyledA>
+            <p className="text-slate-300/75">{title}</p>
+        </Breadcrumbs>
+    );
+};
+
+const components = {
+    ...genericBlogComponents,
+    NextImage: Image,
+    VideoPlayer,
+    Breadcrumbs: BreadCrumbsProvider,
+};
 
 export default function Test({
     source,
