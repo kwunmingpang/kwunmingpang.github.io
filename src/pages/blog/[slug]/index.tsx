@@ -61,7 +61,7 @@ const CustomBreadCrumbs: FC<
                     aria-label="breadcrumb"
                     separator={<span className="text-slate-300/75">›</span>}
                 >
-                    <StyledA href="/blog">about</StyledA>
+                    <StyledA href="/blog">blog</StyledA>
                     {category && (
                         <p className="text-slate-300/75">{category}</p>
                     )}
