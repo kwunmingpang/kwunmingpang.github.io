@@ -83,7 +83,7 @@ const MobileMenu = () => {
     return (
         <div className="flex md:hidden grow">
             <span className="ml-auto mr-8 text-zinc-200" onClick={handleClick}>
-                <MenuIcon />
+                <MenuIcon fontSize="large" />
             </span>
             <Popper
                 open={open}

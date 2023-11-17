@@ -13,6 +13,19 @@ import _ from "lodash";
 import DisplayBlogItem from "@/components/blog/DisplayBlogItem";
 import ViewMore from "@/components/ViewMore";
 import HomePageGallery from "@/components/gallery/HomePageGallery";
+import Image from "next/image";
+import { FC, PropsWithChildren } from "react";
+
+const NoMargin: FC<PropsWithChildren> = ({ children, ...rest }) => (
+    <h1 className="mt-4 mb-6 text-4xl font-black" {...rest}>
+        {children}
+    </h1>
+)
+
+const components = {
+    ...genericBlogComponents,
+    h1: NoMargin,
+};
 
 export default function Home({
     source,
@@ -25,13 +38,22 @@ export default function Home({
                 <title>Peter Pang</title>
             </Head>
             <div className="w-full flex p-4 md:p-8 flex-col md:flex-row ">
-                <div className="lg:w-8/12 md:w-10/12 md:p-4 flex flex-col">
+                <div className="lg:w-8/12 md:w-10/12 md:p-4 flex flex-col relative">
                     <span className="my-auto"></span>
+                    <div className="flex">
+                        <Image
+                            src={"/assets/peter.jpg"}
+                            width={76}
+                            height={76}
+                            alt="peter"
+                            className="rounded-full"
+                        />
+                    </div>
                     <div>
                         <MDXRemote
                             {...source}
                             // @ts-ignore
-                            components={genericBlogComponents}
+                            components={components}
                         />
                     </div>
                     <span className="my-auto"></span>
