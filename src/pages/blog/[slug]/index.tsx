@@ -24,6 +24,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 import Image from "next/image";
 import { filterDraft } from "@/service/fileService";
+import "prismjs/themes/prism-tomorrow.css";
+import { CodeBlock } from "@/components/mdx/CodeBlock";
 
 const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {
     const display = useMemo(
@@ -79,7 +81,11 @@ const CustomBreadCrumbs: FC<
     );
 };
 
-const components = { NextImage: Image, ...genericBlogComponents };
+const components = {
+    NextImage: Image,
+    CodeBlock: CodeBlock,
+    ...genericBlogComponents,
+};
 
 export default function Test({
     source,

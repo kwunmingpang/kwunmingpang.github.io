@@ -50,10 +50,27 @@ export const StyledStrong: FC<PropsWithChildren> = ({ children, ...rest }) => (
         {children}
     </strong>
 );
-export const StyledBlockQuote: FC<PropsWithChildren> = ({ children, ...rest }) => (
-    <blockquote className="font-bold p-4 rounded-lg bg-zinc-800/80 my-4" {...rest}>
+export const StyledBlockQuote: FC<PropsWithChildren> = ({
+    children,
+    ...rest
+}) => (
+    <blockquote
+        className="font-bold p-4 rounded-lg bg-zinc-800/80 my-4"
+        {...rest}
+    >
         {children}
     </blockquote>
+);
+export const StyledCodeBlock: FC<PropsWithChildren> = ({
+    children,
+    ...rest
+}) => {
+    return <code {...rest}>{children}</code>;
+};
+export const StyledPre: FC<PropsWithChildren> = ({ children, ...rest }) => (
+    <pre {...rest} className="language-markdown">
+        {children}
+    </pre>
 );
 export const PDFReader: FC<{ file: string }> = ({ file }) => {
     return (

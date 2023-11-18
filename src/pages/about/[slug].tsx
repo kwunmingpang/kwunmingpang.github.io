@@ -29,7 +29,7 @@ const components = {
     ...genericBlogComponents,
     NextImage: Image,
     VideoPlayer,
-    Breadcrumbs: BreadCrumbsProvider,
+    Breadcrumbs: BreadCrumbsProvider
 };
 
 export default function Test({
