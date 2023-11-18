@@ -138,7 +138,7 @@ export async function getStaticPaths() {
     console.log(files);
     return {
         paths: [
-            ...files.filter(filterDraft(false)).map((file) => ({
+            ...files.filter(filterDraft).map((file) => ({
                 params: {
                     slug: file.replace(MDX_FILE_NAME, "$1"),
                 },
