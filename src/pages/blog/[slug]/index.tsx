@@ -23,6 +23,7 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 import Image from "next/image";
+import { filterDraft } from "@/service/fileService";
 
 const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {
     const display = useMemo(
@@ -137,7 +138,7 @@ export async function getStaticPaths() {
     console.log(files);
     return {
         paths: [
-            ...files.map((file) => ({
+            ...files.filter(filterDraft(false)).map((file) => ({
                 params: {
                     slug: file.replace(MDX_FILE_NAME, "$1"),
                 },

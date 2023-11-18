@@ -34,7 +34,7 @@ const mapBlogMeta = (file: string) =>
 
 const isDev = () => "development" == process.env.NODE_ENV;
 
-const filterDraft = (isDev: boolean) => (file: string) => {
+export const filterDraft = (isDev: boolean) => (file: string) => {
     if (isDev) return true;
     return !/^draft.+/.test(file);
 };
