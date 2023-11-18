@@ -36,7 +36,7 @@ const isDev = () => "development" == process.env.NODE_ENV;
 
 export const filterDraft = (isDev: boolean) => (file: string) => {
     if (isDev) return true;
-    return !/^draft.+/.test(file);
+    return !/^draft:.+/.test(file);
 };
 
 export const getBlogMetaDatas = () => {
