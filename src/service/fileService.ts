@@ -32,9 +32,9 @@ const mapBlogMeta = (file: string) =>
         }))
     );
 
-const isDev = () => "development" == process.env.NODE_ENV;
+export const isDev = "development" == process.env.NODE_ENV;
 
-export const filterDraft = (isDev: boolean) => (file: string) => {
+export const filterDraft = (file: string) => {
     if (isDev) return true;
     return !/^draft:.+/.test(file);
 };
@@ -42,7 +42,7 @@ export const filterDraft = (isDev: boolean) => (file: string) => {
 export const getBlogMetaDatas = () => {
     const directory = fs.readdirSync(CONTENT_PATH);
 
-    const blogMetas = forkJoin(directory.filter(filterDraft(isDev())).map(mapBlogMeta));
+    const blogMetas = forkJoin(directory.filter(filterDraft).map(mapBlogMeta));
 
     return blogMetas;
 };

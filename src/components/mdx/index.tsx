@@ -2,22 +2,22 @@ import Link from "next/link";
 import { FC, PropsWithChildren } from "react";
 
 export const StyledP: FC<PropsWithChildren> = ({ children, ...rest }) => (
-    <p className="mb-5" {...rest}>
+    <p className="mb-5 text-slate-300/75" {...rest}>
         {children}
     </p>
 );
 export const StyledH1: FC<PropsWithChildren> = ({ children, ...rest }) => (
-    <h1 className="mt-12 mb-6 text-4xl font-bold" {...rest}>
+    <h1 className="mt-12 mb-6 text-4xl font-bold text-slate-200" {...rest}>
         {children}
     </h1>
 );
 export const StyledH2: FC<PropsWithChildren> = ({ children, ...rest }) => (
-    <h2 className="mt-10 mb-6 text-3xl font-bold" {...rest}>
+    <h2 className="mt-10 mb-6 text-3xl font-bold text-slate-200" {...rest}>
         {children}
     </h2>
 );
 export const StyledH3: FC<PropsWithChildren> = ({ children, ...rest }) => (
-    <h3 className="mt-8 mb-6 text-2xl font-bold" {...rest}>
+    <h3 className="mt-8 mb-6 text-2xl font-bold text-slate-200" {...rest}>
         {children}
     </h3>
 );
