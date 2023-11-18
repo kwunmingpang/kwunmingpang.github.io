@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FC, PropsWithChildren } from "react";
 
 export const StyledP: FC<PropsWithChildren> = ({ children, ...rest }) => (
-    <p className="mb-5 text-slate-300/75" {...rest}>
+    <p className="mb-5 text-slate-300/90 text-lg" {...rest}>
         {children}
     </p>
 );
