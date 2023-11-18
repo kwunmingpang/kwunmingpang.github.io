@@ -1,0 +1,48 @@
+---
+title: "Geometric series"
+date: "2023-11-18"
+category: "Mathematics"
+---
+
+The series
+
+$$
+    \frac 1 2 + \frac 1 4 + \frac 1 8 + \frac 1 {16} + \dots 
+$$
+
+is an example of geometric series. A geometric series can be written as 
+
+<NextImage src={"/assets/blog/geometric.png"} width={220} height={214} alt="geometry" style={{background: "white"}} />
+*graphical representation of the example*
+[Source](https://en.wikipedia.org/wiki/Geometric_series)
+
+$$
+    a + ar + ar^2 + ar^3 + \dots
+$$
+
+where $a$ is the coefficient of each term and $r$ is the common ratio. In the example series, $a = \frac 1 2$ and $r = \frac 1 2$. 
+
+This can also be written as
+
+$$
+    \sum^{\infin}_{k=0}ar^k
+$$
+
+The sum of the first n terms can be written as the closed form solution as
+
+$$
+    \begin{aligned}
+    s_n &= \sum^{n - 1}_{k=0}ar^k \\
+    s_n &= ar^0 + ar^1 + \dots + a^{n-1} \\
+    rs_n &= r(s_n) = ar^1 + ar^2 + \dots + a^{n}\\
+    &\text{by subtracting each term, }\\
+    s_n - rs_n &= ar^0 + ar^1 - ar^1 + \dots ar^{n-1} - ar^{n-1} + ar^n\\
+    s_n - rs_n &= ar^0 + ar^n\\
+    &\text{now extracting the coefficient of the series}\\
+    s_n(1 - r) &= ar^0 + ar^n\\
+    s_n &= \frac {ar^0 + ar^n} {(1 - r)}\\
+    &= a \left(\frac {1 + r^n} {1 - r}\right)\text{, for } r \neq 1\\
+    \end{aligned}
+$$
+
+Adapted from [Source](https://en.wikipedia.org/wiki/Geometric_series).

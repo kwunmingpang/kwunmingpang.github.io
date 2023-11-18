@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FC, PropsWithChildren } from "react";
 
 export const StyledP: FC<PropsWithChildren> = ({ children, ...rest }) => (
-    <p className="mb-5 text-slate-300/75" {...rest}>
+    <p className="mb-5" {...rest}>
         {children}
     </p>
 );
@@ -49,6 +49,11 @@ export const StyledStrong: FC<PropsWithChildren> = ({ children, ...rest }) => (
     <strong className="text-blue-300/75 font-bold" {...rest}>
         {children}
     </strong>
+);
+export const StyledBlockQuote: FC<PropsWithChildren> = ({ children, ...rest }) => (
+    <blockquote className="font-bold p-4 rounded-lg bg-zinc-800/80 my-4" {...rest}>
+        {children}
+    </blockquote>
 );
 export const PDFReader: FC<{ file: string }> = ({ file }) => {
     return (

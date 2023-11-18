@@ -22,6 +22,7 @@ import { genericBlogComponents } from "@/constant/blog";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
+import Image from "next/image";
 
 const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {
     const display = useMemo(
@@ -77,7 +78,7 @@ const CustomBreadCrumbs: FC<
     );
 };
 
-const components = { TestComponent, ...genericBlogComponents };
+const components = { NextImage: Image, ...genericBlogComponents };
 
 export default function Test({
     source,
