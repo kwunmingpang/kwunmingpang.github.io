@@ -61,17 +61,6 @@ export const StyledBlockQuote: FC<PropsWithChildren> = ({
         {children}
     </blockquote>
 );
-export const StyledCodeBlock: FC<PropsWithChildren> = ({
-    children,
-    ...rest
-}) => {
-    return <code {...rest}>{children}</code>;
-};
-export const StyledPre: FC<PropsWithChildren> = ({ children, ...rest }) => (
-    <pre {...rest}>
-        {children}
-    </pre>
-);
 export const PDFReader: FC<{ file: string }> = ({ file }) => {
     return (
         <div className="w-full my-2">

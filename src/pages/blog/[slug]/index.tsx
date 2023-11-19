@@ -25,10 +25,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { filterDraft } from "@/service/fileService";
 import "prismjs/themes/prism-tomorrow.css";
-import { CodeBlock } from "@/components/mdx/CodeBlock";
-import {
-    StyledPrePrism,
-} from "@/components/mdx/StyledCodeBlock";
 import Prism from "prismjs"
 
 const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {
@@ -88,7 +84,6 @@ const CustomBreadCrumbs: FC<
 const components = {
     ...genericBlogComponents,
     NextImage: Image,
-    CodeBlock: CodeBlock,
 };
 
 export default function Test({

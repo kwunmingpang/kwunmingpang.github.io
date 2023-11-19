@@ -1,12 +1,10 @@
 import {
     StyledA,
     StyledBlockQuote,
-    StyledCodeBlock,
     StyledH1,
     StyledH2,
     StyledH3,
     StyledP,
-    StyledPre,
     StyledStrong,
 } from "@/components/mdx";
 
@@ -17,6 +15,5 @@ export const genericBlogComponents = {
     h3: StyledH3,
     a: StyledA,
     strong: StyledStrong,
-    blockquote: StyledBlockQuote,
-    pre: StyledPre
+    blockquote: StyledBlockQuote
 };
