@@ -21,4 +21,5 @@ export type FrontMatterType = {
     date: string;
     category?: string;
     abstract?: string;
+    programmingLanguage?: string;
 }

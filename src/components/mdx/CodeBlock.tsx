@@ -7,12 +7,14 @@ export const CodeBlock: FC<
     const codeRef = useRef<HTMLElement | null>(null);
     useEffect(() => {
         if (!codeRef.current) return;
-        const html = Prism.highlight(
-            codeRef.current.innerHTML,
-            Prism.languages.javascript,
-            "javascript"
-        );
-        codeRef.current.innerHTML = html;
+        console.log(Prism.languages)
+        Prism.highlightAll()
+        // const html = Prism.highlight(
+        //     codeRef.current.innerHTML,
+        //     Prism.languages.javascript,
+        //     "javascript"
+        // );
+        // codeRef.current.innerHTML = html;
         // codeRef.current.innerText = html
         // Prism.highlightAll(undefined, () => console.log("callback"))
     }, [code]);

@@ -8,7 +8,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import Head from "next/head";
-import { FC, PropsWithChildren, useMemo } from "react";
+import { FC, PropsWithChildren, useEffect, useMemo } from "react";
 import { FrontMatterType } from "@/model";
 import { format, parse } from "date-fns";
 import {
@@ -17,7 +17,7 @@ import {
     MDX_FILE_NAME,
 } from "@/constant";
 import blogStlye from "@styles/blog.module.css";
-import { StyledA, TestComponent } from "@components/mdx";
+import { StyledA } from "@components/mdx";
 import { genericBlogComponents } from "@/constant/blog";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -26,6 +26,10 @@ import Image from "next/image";
 import { filterDraft } from "@/service/fileService";
 import "prismjs/themes/prism-tomorrow.css";
 import { CodeBlock } from "@/components/mdx/CodeBlock";
+import {
+    StyledPrePrism,
+} from "@/components/mdx/StyledCodeBlock";
+import Prism from "prismjs"
 
 const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {
     const display = useMemo(
@@ -82,15 +86,19 @@ const CustomBreadCrumbs: FC<
 };
 
 const components = {
+    ...genericBlogComponents,
     NextImage: Image,
     CodeBlock: CodeBlock,
-    ...genericBlogComponents,
 };
 
 export default function Test({
     source,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     const { title, category } = useMemo(() => source?.frontmatter, [source]);
+
+    useEffect(() => {
+        Prism.highlightAll();
+    }, [source]);
 
     return (
         <div

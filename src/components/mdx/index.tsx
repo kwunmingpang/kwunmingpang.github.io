@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useEffect } from "react";
 
 export const StyledP: FC<PropsWithChildren> = ({ children, ...rest }) => (
     <p className="mb-5 text-slate-300/90 text-lg" {...rest}>
@@ -68,7 +68,7 @@ export const StyledCodeBlock: FC<PropsWithChildren> = ({
     return <code {...rest}>{children}</code>;
 };
 export const StyledPre: FC<PropsWithChildren> = ({ children, ...rest }) => (
-    <pre {...rest} className="language-markdown">
+    <pre {...rest}>
         {children}
     </pre>
 );

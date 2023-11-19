@@ -1,5 +1,4 @@
 import {
-    CodeBlock,
     StyledA,
     StyledBlockQuote,
     StyledCodeBlock,
@@ -19,6 +18,5 @@ export const genericBlogComponents = {
     a: StyledA,
     strong: StyledStrong,
     blockquote: StyledBlockQuote,
-    code: StyledCodeBlock,
     pre: StyledPre
 };
