@@ -37,7 +37,7 @@ The result is that the application can benefit from both the SEO optimization an
 
 ## Content and maintainance
 
-For most site with content, there is usually a content management system (CMS), out of which [WordPress](https://wordpress.com/) is probably the most well known. However, setting up a CMS and keeping a server is not viable for me because I want to minimize thie cost and maintaining a system on a server will certainly add to it. Therefore I choose to use mdx with [next-mdx-remote](https://www.npmjs.com/package/next-mdx-remote). Using this, I am able to update content on \*.mdx file, and they will be later compiled into html by the library.
+For most site with content, there is usually a content management system (CMS), out of which [WordPress](https://wordpress.com/) is probably the most well known. However, setting up a CMS and keeping a server is not ideal for me because I want to minimize thie cost and maintaining a system on a server will certainly add to it. Therefore I choose to use mdx with [next-mdx-remote](https://www.npmjs.com/package/next-mdx-remote). Using this, I am able to update content on \*.mdx file, and they will be later compiled into html by the library.
 
 This provides great flexibility and good maintainability as well because we are able to modify content without directly modifying the code, while being able to comfortably update content using markdown syntax, reuse the styling and reuse some React component as well.
 
@@ -49,7 +49,6 @@ As an example, in my about page, I can write syntax like this:
 contact me at [pangkwunming@gmail.com](mailto:pangkwunming@gmail.com), or the following options as well.
 
 <FollowMe col={false}/>
-
 ```
 
 We can see that a combination of markdown language and React component is being used. The resulting syntax is fairly easy to modify, and the functions and component can be reused as well. 
