@@ -55,9 +55,17 @@ We can see that a combination of markdown language and React component is being 
 
 I will post a **technical** detailed set-up in another blog later. 
 
-## Building the site
+## Building and serving the site
 
+To build static site, simply by adding `output: "export"` in the next config file. 
 
+```js
+const nextConfig = {
+    output: "export",
+    distDir: "/docs",
+    ...rest
+}
+```
 
 ## Hosting
 

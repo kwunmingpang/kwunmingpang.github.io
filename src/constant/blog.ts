@@ -1,6 +1,7 @@
 import {
     StyledA,
     StyledBlockQuote,
+    StyledCode,
     StyledH1,
     StyledH2,
     StyledH3,
@@ -15,5 +16,6 @@ export const genericBlogComponents = {
     h3: StyledH3,
     a: StyledA,
     strong: StyledStrong,
-    blockquote: StyledBlockQuote
+    blockquote: StyledBlockQuote,
+    code: StyledCode
 };

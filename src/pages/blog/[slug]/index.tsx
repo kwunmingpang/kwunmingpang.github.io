@@ -24,7 +24,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 import Image from "next/image";
 import { filterDraft } from "@/service/fileService";
-import "prismjs/themes/prism-tomorrow.css";
+import "prismjs/themes/prism-dark.css";
 import Prism from "prismjs"
 
 const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {

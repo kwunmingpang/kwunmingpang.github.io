@@ -61,6 +61,17 @@ export const StyledBlockQuote: FC<PropsWithChildren> = ({
         {children}
     </blockquote>
 );
+export const StyledCode: FC<PropsWithChildren> = ({
+    children,
+    ...rest
+}) => (
+    <code
+        className="font-bold text-amber-200"
+        {...rest}
+    >
+        {children}
+    </code>
+);
 export const PDFReader: FC<{ file: string }> = ({ file }) => {
     return (
         <div className="w-full my-2">
