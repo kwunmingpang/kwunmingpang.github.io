@@ -12,8 +12,12 @@
                     "json",
                     "cpp"
                 ],
-                "plugins": ["line-numbers"],
-                "theme": "twilight",
+                "plugins": [
+                    "line-numbers",
+                    "show-language",
+                    "copy-to-clipboard"
+                ],
+                "theme": "tomorrow",
                 "css": true
             }
         ]

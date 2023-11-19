@@ -24,8 +24,9 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 import Image from "next/image";
 import { filterDraft } from "@/service/fileService";
-import "prismjs/themes/prism-dark.css";
+import "prismjs/themes/prism-tomorrow.css";
 import Prism from "prismjs"
+Prism.manual = true;
 
 const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {
     const display = useMemo(
