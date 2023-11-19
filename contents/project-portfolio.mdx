@@ -53,8 +53,6 @@ contact me at [pangkwunming@gmail.com](mailto:pangkwunming@gmail.com), or the fo
 
 We can see that a combination of markdown language and React component is being used. The resulting syntax is fairly easy to modify, and the functions and component can be reused as well. 
 
-I will post a **technical** detailed set-up in another blog later. 
-
 ## Building and serving the site
 
 To build static site, simply by adding `output: "export"` in the next config file. 
@@ -67,6 +65,14 @@ const nextConfig = {
 }
 ```
 
-## Hosting
+Then simply run `npx next build`, Next js will handle the building of static assets. 
+
+![assets](/assets/blog/project-portfolio:next-build.png)
+
+We can see form the figure that the output directory contains all the .html files and assets. We can test serving this directory by using `npx http-server "./docs"` by using [http-server](https://www.npmjs.com/package/http-server) package in local. Now the website should be available in port 8080 in your local machine. If everything works well, we can now simply serve the directory in a file server. In this case, I choose to use [Github pages](https://pages.github.com/). Now my site is available in my github homepage at [https://kwunmingpang.github.io/](https://kwunmingpang.github.io/). 
 
 ## Summary
+
+In summary, I choose to use Next js for my project because of SSG provided by Next js, in addition to the SEO optimization and enhanced user experience from SPA. I manage the content on my site using markdown files because of the maintainability and the flexibility provided by markdown templates. When the contents are updated, I build using `npx next build` and serve the static directory on github pages. 
+
+I hope this can be an insipration to your project as well. I plan to post more blogs about more technical details of what is not included in this page. Hope that will help other people with their projects. 
