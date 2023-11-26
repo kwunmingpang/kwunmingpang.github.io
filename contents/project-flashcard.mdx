@@ -1,0 +1,50 @@
+---
+title: "Flash card web-app"
+date: "2023-11-19"
+category: "projects"
+---
+
+## Introduction
+
+As introduced in my [project](/projects) page, I needed an application that can help me to memorize vocabulary and also mobile for me to carry during commute. I decided to make a flashcard application that utilize technology of single page application (SPA) using [Angular](https://angular.io/) and [Firebase](https://firebase.google.com/). 
+
+## Tech choice
+
+### Angular
+
+Angular is a really powerful framework that encompass all the tools you need for a web app. It definitely has a learning curve, nonetheless after learning the ways in Angular, developing using this framework is very enjoyable. 
+
+### Firebase
+
+Firebase provides all the funtionality that I need for this application, and it is relatively easy to use. I consider it as a database for front-end, and the authorization etc. is handled for you. I can simply plug in the Firebase api for authentication, the login and authorization will be handled by firebase therefore it saves a lot of efforts. 
+
+## Product display
+
+The most important feature for me is to share data across devices and also be able to efficiently support me to reinforce my learning on the vocabulary. 
+
+In the application, different people, depending on the login account, will have their own listing for vocabulary. The access of listing is controled with authentication using api provided by firebase, which means by trying different url, unauthorized access is not allowed even if the url hits. 
+
+<GridContainer>
+<div>
+<NextImage src={"/assets/blog/project-flashcard:02.jpg"} width={300} height={400} alt="flashcard display on phone" />
+*flashcard app on mobile*
+</div>
+<div>
+<NextImage src={"/assets/blog/project-flashcard:03.gif"} width={300} height={400} alt="flashcard display" />
+*flashcard on mobile going to next card by swiping*
+</div>
+<div>
+<NextImage src={"/assets/blog/project-flashcard:01.png"} width={300} height={400} alt="flashcard display desktop" />
+*editing vocabular on desktop*
+</div>
+<div>
+<NextImage src={"/assets/blog/project-flashcard:04.png"} width={300} height={400} alt="flashcard display" />
+*listing vocabulary on desktop*
+</div>
+<div>
+    <NextImage src={"/assets/blog/project-flashcard:05.png"} width={300} height={400} alt="flashcard display" />
+    *listing different folders of vocabulary on desktop*
+</div>
+</GridContainer>
+
+The resulting application can sufficiently support my need, although there are definitely more room for improvement. However, for the purpose of reviewing for my exam, this is adequate. 

@@ -26,6 +26,7 @@ import Image from "next/image";
 import { filterDraft } from "@/service/fileService";
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from "prismjs"
+import GridContainer from "@/components/layout/GridContainer";
 Prism.manual = true;
 
 const BlogHeader: FC<FrontMatterType> = ({ title, date }) => {
@@ -85,6 +86,7 @@ const CustomBreadCrumbs: FC<
 const components = {
     ...genericBlogComponents,
     NextImage: Image,
+    GridContainer
 };
 
 export default function Test({

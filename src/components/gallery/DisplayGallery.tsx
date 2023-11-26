@@ -3,6 +3,7 @@ import { useCallback, useState } from "react"
 import Modal from '@mui/material/Modal';
 import DisplayGalleryItem from "./DisplayGalleryItem";
 import Fade from '@mui/material/Fade';
+import GridContainer from "../layout/GridContainer";
 
 // add image meta data (yaml) later to give tags etc. to images
 const DisplayGallery = ({ pictures = [] }: { pictures: string[] }) => {
@@ -18,7 +19,7 @@ const DisplayGallery = ({ pictures = [] }: { pictures: string[] }) => {
         setImage(source)
     }, [image])
 
-    return <div className="grid gap-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 lg:gap-3">
+    return <GridContainer>
         {[...pictures].map((pic, index) => {
             return <DisplayGalleryItem pictureSource={pic} key={`${pic}_${index}`} handleOpen={handleOpen} setModalImage={setModalImage} />
         })}
@@ -38,7 +39,7 @@ const DisplayGallery = ({ pictures = [] }: { pictures: string[] }) => {
                 </div>
             </Fade>
         </Modal>
-    </div>
+    </GridContainer>
 }
 
 export default DisplayGallery
