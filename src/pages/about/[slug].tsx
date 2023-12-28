@@ -82,6 +82,12 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
 export async function getStaticPaths() {
     const files = fs.readdirSync("./about");
 
+    return {
+        paths: [
+        ],
+        fallback: false,
+    };
+
     console.log(files);
     return {
         paths: [

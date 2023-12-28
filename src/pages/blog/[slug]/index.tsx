@@ -23,7 +23,7 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 import Image from "next/image";
-import { filterDraft } from "@/service/fileService";
+import { filterHidden } from "@/service/fileService";
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from "prismjs"
 import GridContainer from "@/components/layout/GridContainer";
@@ -150,7 +150,7 @@ export async function getStaticPaths() {
     console.log(files);
     return {
         paths: [
-            ...files.filter(filterDraft).map((file) => ({
+            ...files.filter(filterHidden).map((file) => ({
                 params: {
                     slug: file.replace(MDX_FILE_NAME, "$1"),
                 },

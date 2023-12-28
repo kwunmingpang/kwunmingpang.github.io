@@ -34,15 +34,15 @@ const mapBlogMeta = (file: string) =>
 
 export const isDev = "development" == process.env.NODE_ENV;
 
-export const filterDraft = (file: string) => {
+export const filterHidden = (file: string) => {
     if (isDev) return true;
-    return !/^draft:.+/.test(file);
+    return !/^(draft|archive):.+/.test(file);
 };
 
 export const getBlogMetaDatas = () => {
     const directory = fs.readdirSync(CONTENT_PATH);
 
-    const blogMetas = forkJoin(directory.filter(filterDraft).map(mapBlogMeta));
+    const blogMetas = forkJoin(directory.filter(filterHidden).map(mapBlogMeta));
 
     return blogMetas;
 };
