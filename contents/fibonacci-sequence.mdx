@@ -1,0 +1,216 @@
+---
+title: "Fibonacci sequence numeric approach"
+date: "2024-01-07"
+---
+
+The Fibonacci sequence is defined as 
+
+$$
+F_i = \begin{cases}
+0 & \text{if } i = 0\\
+1 & \text{if } i = 1\\
+F_{i-1} + F_{i-2} & \text{if } i \ge 2\\
+\end{cases}
+$$
+
+$[0, 1, 1, 2, 3, 5, 8, \dots]$ are the first few members to the sequence. 
+
+In a simple attempt to generate the Fibonacci number at a index i, we may consider 
+
+```c
+int Fibonacci(int i) {
+    if(i == 0) {
+        return 0;
+    } else if(i == 1) {
+        return 1;
+    }
+    return Fibonacci(i - 1) + Fibonacci(i - 2);
+}
+```
+
+However, this approach is very slow; the time complexity is $O(2^n)$. It would take about 10^15 iterations to return a fibonacci number at index 50. 
+
+A better algorithm is to cache the numbers that has been generated which will significantly improve the complexity. 
+
+```c
+long Fibonacci_Cache(int i) {
+    // cache variable to memorize last step
+    long two_before = 0;
+    long one_before = 1;
+    // base case
+    if(i == 0) {
+        return 0;
+    } else if(i == 1) {
+        return 1;
+    }
+    long current;
+    for(int index = 0; index < i - 1; index++) {
+        // new F_index
+        current = two_before + one_before;
+        // assign new F_index to the cache variable
+        two_before = one_before;
+        one_before = current;
+    }
+    return current;
+}
+```
+
+Alternatively, I recently learnt that the fibonacci number at index i is actually, 
+
+$$
+F_i = \frac 
+{\Phi^i - \hat \Phi^i} 
+{\sqrt{5}}
+$$
+
+Where $\Phi \approx 1.61803$ is the golden ratio and $\hat \Phi \approx -0.61803$. Using that, we can calculate the fibonacci number at index 10 
+
+$$
+F_{10} \approx (1.61803 ^ 10 - (-0.61803 ^ 10)) / sqrt(5) \approx 55
+$$
+
+we can verify by running 
+
+```c
+int main() {
+    int number = 10;
+    printf("Fibonacci number for index: %d is %ld\n", number, Fibonacci_Cache(number));
+}
+```
+
+```console
+Fibonacci number for index: 10 is 55
+```
+
+Putting the formula in c code, we get a function that can return a fibonacci number using golden ratio! 
+
+```c
+long Fibonacci_Num(int i) {
+    double golden_ratio = (1.0 + sqrt(5)) / 2.0;
+    double golden_conj = (1.0 - sqrt(5)) / 2.0;
+    // round because of rounding error from calculation
+    return roundl((pow(golden_ratio, (double) i) - pow(golden_conj, (double) i)) / sqrt(5));
+}
+```
+
+```c
+int main() {
+    int number = 10;
+    printf("Fibonacci number for index: %d is %ld\n", number, Fibonacci_Num(number));
+}
+```
+
+```console
+Fibonacci number for index: 10 is 55
+```
+
+However, note that due to rounding error and loss of accuracy in double data type, the number returned may be off a bit when the index is large; let's say for $F_80$. 
+
+To prove that this formula is correct, we can use proof by induction. 
+
+To recap, fibonacci number is defined by
+
+$$
+F_i = \begin{cases}
+0 & \text{if } i = 0\\
+1 & \text{if } i = 1\\
+F_{i-1} + F_{i-2} & \text{if } i \ge 2\\
+\end{cases}
+$$
+
+We want to prove that 
+
+$$
+F_i = \frac {\Phi^i - \hat \Phi^i} {\sqrt{5}}
+$$
+
+where the golden ratio $\Phi$ and its conjugate $\hat \Phi$ are defined by
+
+$$
+\Phi = \frac {1 + \sqrt{5}} {2} \approx 1.61803 \\
+\hat \Phi = \frac {1 - \sqrt{5}} {2} \approx -0.61803
+$$
+
+First, we prove the initial case that 
+
+$$
+\begin{align*}
+F_0 &= \frac {\Phi^0 - \Phi^0} {\sqrt 5} = 0 \\
+F_1 &= \frac {\Phi^1 - \Phi^1} {\sqrt 5} = \frac 
+{\cfrac {1 + \sqrt 5} {2} - \cfrac {1 - \sqrt 5} {2}} 
+{\sqrt 5} \\
+&= \frac {\sqrt 5} {\sqrt 5} = 1
+\end{align*}
+$$
+
+Thus the initial case is true
+
+Assume that 
+
+$$
+F_i = \frac {\Phi^i - \hat \Phi^i} {\sqrt{5}}
+$$ 
+
+and 
+
+$$
+F_{i-1} = \frac {\Phi^{i-1} - \hat \Phi^{i-1}} {\sqrt{5}}
+$$
+
+are both true, we want to prove that 
+
+$$
+F_{i+1} = \frac {\Phi^{i+1} - \hat \Phi^{i+1}} {\sqrt{5}}
+\tag{1}
+$$
+
+By the definition of fibonacci sequence. 
+
+$$
+\begin{align*}
+F_{i+1} &= F_i + F_{i-1}\\
+&= \frac {\Phi^i - \hat \Phi^i} {\sqrt{5}} + \frac {\Phi^{i-1} - \hat \Phi^{i-1}} {\sqrt{5}} \\
+&= \frac {
+\Phi^{i-1}(\Phi + 1) - \hat \Phi^{i-1}(\hat \Phi + 1)
+} {\sqrt{5}} 
+\tag{2}
+\end{align*}
+$$
+
+Comparing equation (1) and (2), they would be equal if $\Phi + 1 = \Phi ^2$ and $\hat \Phi + 1 = \hat \Phi ^2$
+
+$$
+\Phi^2 = \left(
+\frac {1 + \sqrt 5} {2}
+\right)^2 = \frac {1 + 5 + 2\sqrt 5} {4} = \frac {3 + \sqrt 5} {2} \\
+= 1 + \frac {1 + \sqrt 5} 2 = 1 + \Phi
+$$
+
+Similarly, 
+
+$$
+\hat \Phi^2 = \left(
+\frac {1 - \sqrt 5} {2}
+\right)^2 = \frac {1 + 5 - 2\sqrt 5} {4} \\
+= 1 + \frac {1 - \sqrt 5} 2 = 1 + \hat \Phi
+$$
+
+Thus replacing $\Phi^2 = \Phi + 1$ and $\hat \Phi^2 = \hat \Phi + 1$ to the equation (2), 
+
+$$
+\begin{align*}
+F_{i+1} &= F_i + F_{i-1}\\
+&= \frac {
+\Phi^{i-1}(\Phi + 1) - \hat \Phi^{i-1}(\hat \Phi + 1) - 
+} {\sqrt{5}} \\
+&= \frac 
+{\Phi^{i+1} - \hat \Phi^{i+1}} 
+{\sqrt 5}
+\end{align*}
+$$
+
+Thus by induction, we prove that
+
+$$
+F_i = \frac {\Phi^i - \hat \Phi ^i} {\sqrt 5}
+$$
