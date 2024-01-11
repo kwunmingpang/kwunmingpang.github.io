@@ -1,6 +1,6 @@
 import ViewMore from "@/components/ViewMore";
 import GeneralContainer from "@/components/layout/GeneralContainer";
-import { StyledH1 } from "@/components/mdx";
+import { Divider, StyledH1 } from "@/components/mdx";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import path from "path";
 import fs from "fs";
@@ -11,13 +11,6 @@ import { genericBlogComponents } from "@/constant/blog";
 import Head from "next/head";
 import Image from "next/image";
 import { format, parse } from "date-fns";
-
-const Divider: FC = () => (
-    <span
-        className="absolute top-0 w-full inset-x-1-bottom-px h-px 
-        bg-gradient-to-r from-blue-300/60 from-blue-300/20"
-    ></span>
-);
 
 const Container: FC<PropsWithChildren> = ({ children }) => (
     <div className="mt-12 w-full relative">

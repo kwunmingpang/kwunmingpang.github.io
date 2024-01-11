@@ -99,3 +99,21 @@ export const VideoPlayer: FC<{ file: string; classname?: string }> = ({
         </div>
     );
 };
+export const Divider: FC = () => (
+    <span
+        className="absolute top-0 w-full inset-x-1-bottom-px h-px 
+        bg-gradient-to-r from-blue-300/60 from-blue-300/20"
+    ></span>
+);
+export const Reference: FC<PropsWithChildren> = ({children}) => (
+    <div className="mt-6 w-full relative">
+        <h3 className="mt-8 text-2xl font-bold text-slate-200">
+            References
+        </h3>
+        <span
+            className="w-full h-px bg-gradient-to-r from-blue-300/60 from-blue-300/20 block mb-6"
+        >
+        </span>
+        {children}
+    </div>
+);

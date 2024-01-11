@@ -1,6 +1,6 @@
 ---
 title: "Fibonacci sequence numeric approach"
-date: "2024-01-07"
+date: "2024-01-12"
 category: "Computer Science"
 ---
 
@@ -56,7 +56,7 @@ long Fibonacci_Cache(int i) {
 }
 ```
 
-Alternatively, I recently learnt that the fibonacci number at index i is actually, 
+Alternatively, according to [1], the fibonacci number at index i can be represented by 
 
 $$
 F_i = \frac 
@@ -67,7 +67,7 @@ $$
 Where $\Phi \approx 1.61803$ is the golden ratio and $\hat \Phi \approx -0.61803$. Using that, we can calculate the fibonacci number at index 10 
 
 $$
-F_{10} \approx (1.61803 ^ 10 - (-0.61803 ^ 10)) / sqrt(5) \approx 55
+F_{10} \approx \frac {1.61803^{10} - (-0.61803)^{10}} {\sqrt{5}} \approx 55
 $$
 
 we can verify by running 
@@ -215,3 +215,7 @@ Thus by induction, we prove that
 $$
 F_i = \frac {\Phi^i - \hat \Phi ^i} {\sqrt 5}
 $$
+
+<Reference >
+[1]T. H. Cormen, Charles Eric Leiserson, R. L. Rivest, C. Stein, and E. Al, Introduction to algorithms. MIT Press, 2009.
+</Reference >

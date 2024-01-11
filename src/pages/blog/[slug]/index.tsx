@@ -17,7 +17,7 @@ import {
     MDX_FILE_NAME,
 } from "@/constant";
 import blogStlye from "@styles/blog.module.css";
-import { StyledA } from "@components/mdx";
+import { StyledA, Reference } from "@components/mdx";
 import { genericBlogComponents } from "@/constant/blog";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -86,7 +86,8 @@ const CustomBreadCrumbs: FC<
 const components = {
     ...genericBlogComponents,
     NextImage: Image,
-    GridContainer
+    GridContainer,
+    Reference
 };
 
 export default function Test({
