@@ -36,7 +36,7 @@ export const isDev = "development" == process.env.NODE_ENV;
 
 export const filterHidden = (file: string) => {
     if (isDev) return true;
-    return !/^(draft|archive):.+/.test(file);
+    return !/^(draft|archive)-.+/.test(file);
 };
 
 export const getBlogMetaDatas = () => {
