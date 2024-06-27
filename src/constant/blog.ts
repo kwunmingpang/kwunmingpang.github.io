@@ -8,6 +8,12 @@ import {
     StyledP,
     StyledStrong,
 } from "@/components/mdx";
+import { Chip, Stack } from "@mui/material";
+
+export const additionalComponents = {
+    Chip: Chip,
+    Stack: Stack
+}
 
 export const genericBlogComponents = {
     p: StyledP,
@@ -17,5 +23,6 @@ export const genericBlogComponents = {
     a: StyledA,
     strong: StyledStrong,
     blockquote: StyledBlockQuote,
-    code: StyledCode
+    code: StyledCode,
+    ...additionalComponents
 };
