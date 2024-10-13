@@ -1,10 +1,12 @@
+# Personal Projects
+
 <Container>
 <>
 <Header title="Personal Portfolio Site" date="2023-11" />
 
 This web-site is available on [github](https://github.com/kwunmingpang/kwunmingpang.github.io), which works as an extension to my resume and includes slices of my life. It is built with next js and served on github. Most of the contents are written in markdown file (mdx) and compiled into html using mdx Remote. 
 
-<ViewMore link="/blog/project-portfolio" topic="details" />
+<ViewMore link="/blog/project-portfolio" topic="Details" />
 
 </>
 </Container>
@@ -16,7 +18,40 @@ This web-site is available on [github](https://github.com/kwunmingpang/kwunmingp
 This project can be accessed at [https://flash-cards-7e7fd.web.app](https://flash-cards-7e7fd.web.app).
 Built it while preparing for my Japanese **N1** exam, since I need an application that can share the flashcard list between devices. It is a web application which users can input their own word list and reinforce their memory by scrolling in a virtual flashcard. 
 
-<ViewMore link="/blog/project-flashcard" topic="details" />
+<ViewMore link="/blog/project-flashcard" topic="Details" />
+
+</>
+</Container>
+
+# University Projects
+
+<Container>
+<>
+<Header title="Fault Tolerant Chat Application" date="2024-05" />
+
+This project is for **Distributed Algorithm** course. We built a fault tolerant group-chat application that allows multiple users to log in and perform instant chat similar to Wechat and WhatsApp. We implemented **Raft** algorithm that serves to create replicated state machines and distribute the data into different nodes; even when some (minority of) nodes fail, the system will keep running. This project is implemented using **Sprint Boot** and **Angular**. 
+Received almost perfect marking (44/45). 
+
+<ViewMore link="/assets/COMP90020_project_report.pdf" topic="Details" newTab={true}/>
+
+</>
+</Container>
+
+<Container>
+<>
+<Header title="Fact Checking System" date="2024-05" />
+
+This project is for **Natural Language Processing** course. We built an fact checking system that consist of two components, retrieving relevant information based on *BM25 score* and then feeding the information into a classifier based on *Recurrent Neural Network* to determine whether an input claim is supported by evidence or not. Performance ranked top 15% in course ranking. 
+
+</>
+</Container>
+
+<Container>
+<>
+<Header title="AI Writing Detector" date="2024-04" />
+
+This project is for **Statistical Machine Learning** course. We used a transformer encoder based machine learning model implemented in Pytorch for AI detection task; we have a supervised learning task to classify whether a piece of writing is by human or AI. 
+Performance ranked top 15% in course ranking. 
 
 </>
 </Container>

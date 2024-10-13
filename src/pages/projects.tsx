@@ -47,8 +47,6 @@ const Projects = ({
             <Head>
                 <title>Projects | Peter Pang</title>
             </Head>
-            <StyledH1>Projects outside work and study</StyledH1>
-
             <div className="mt-4 w-full relative">
                 <MDXRemote
                     {...source}
